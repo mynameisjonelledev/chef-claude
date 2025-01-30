@@ -1,8 +1,17 @@
-# React + Vite
+# Chef Claude 🍽️  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **web app** built using **React** in **Vite**. The application allows users to enter a list of ingredients, and an **AI** will generate a recipe based on those ingredients.  
 
-Currently, two official plugins are available:
+## Features ✨  
+- **Provide Ingredients:** Users can input ingredients they have on hand.  
+- **AI-Generated Recipes:** The AI suggests a recipe using the given ingredients.  
+- **Fast & Lightweight:** Built with **Vite** for a smooth and efficient experience.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack 🛠️  
+- **React** (Frontend framework)  
+- **Vite** (Fast build tool)  
+- **HTML**
+- **CSS**
+
+## Project Origin 🚀  
+This project is part of a **Scrimba** course, aimed at improving React skills while working with AI-powered applications.  
