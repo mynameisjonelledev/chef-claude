@@ -1,4 +1,4 @@
-# Chef Claude 🍽️  
+# Chef Jonelle 🍽️  
 
 This is a **web app** built using **React** in **Vite**. The application allows users to enter a list of ingredients, and an **AI** will generate a recipe based on those ingredients.  
 
