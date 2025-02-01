@@ -71,4 +71,13 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
   width: 183px;
+  cursor: pointer;
+}
+
+.ingr-btn:active {
+  opacity: 0.5;
+}
+
+.ingr-btn:hover {
+  opacity: 0.4;
 }
