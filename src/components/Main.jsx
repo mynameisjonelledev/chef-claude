@@ -15,6 +15,7 @@ export function Main() {
     const formData = new FormData(event.target);
     
     const newIngredient = formData.get("ingredient");
+    
     setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
     
     event.target.reset(); // Clears the form fields
@@ -49,7 +50,7 @@ export function Main() {
                 <h3>Ready for a recipe?</h3>
                 <p>Generate a recipe from your list of ingredients.</p>
             </div>
-            <button>Get a recipe</button>
+            <button className="recipe-btn">Get a recipe</button>
         </div> : null }
     </section> : null}
     </div>
