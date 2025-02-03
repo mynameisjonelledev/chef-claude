@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export function Main() {
 
-  const [ingredients, setIngredients] = useState(['Chicken', 'Lemon']);
+  const [ingredients, setIngredients] = useState([]);
 
   const ingredientsListItems = ingredients.map(ingredient => (
       <li key={ingredient}>{ingredient}</li>
@@ -16,7 +16,10 @@ export function Main() {
     
     const newIngredient = formData.get("ingredient");
     setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
-    console.log(newIngredient);
+    
+    event.target.reset(); // Clears the form fields
+
+
   }
 
 
@@ -36,9 +39,19 @@ export function Main() {
 
       <button className="ingr-btn" type="submit">+ Add ingredient</button>
       </form>
-      <ul>
-        {ingredientsListItems}
-      </ul>
+      
+      {ingredients.length > 0 ? <section>
+        <h2>Ingredients on hand:</h2>
+        <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
+        
+        {ingredients.length > 3 ? <div className="get-recipe-container">
+            <div>
+                <h3>Ready for a recipe?</h3>
+                <p>Generate a recipe from your list of ingredients.</p>
+            </div>
+            <button>Get a recipe</button>
+        </div> : null }
+    </section> : null}
     </div>
     </>
   );
