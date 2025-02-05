@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 exports.handler = async function(event, context) {
-  const huggingFaceToken = process.env.HUGGING_FACE_TOKEN;  // Store this token in Netlify's settings
+  const huggingFaceToken = process.env.VITE_HUGGING_FACE_TOKEN;  // Store this token in Netlify's settings
   
   const response = await fetch('https://api-inference.huggingface.co/models/gpt2', {
     method: 'POST',
