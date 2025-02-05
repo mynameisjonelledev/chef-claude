@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { IngredientsList } from "./IngredientsList";
+import { JonelleRecipe } from "./JonelleRecipe";
 
 export function Main() {
+
+  function hfAPI(){
+    const huggingFaceToken = import.meta.env.VITE_HUGGING_FACE_TOKEN;
+    
+    console.log(huggingFaceToken);
+
+  }
 
   const [ingredients, setIngredients] = useState(["all the main spices", "pasta", "ground beef", "tomato paste"]);
 
