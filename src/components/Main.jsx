@@ -52,7 +52,7 @@ export function Main() {
         
         : null}
 
-      {recipeShown}
+      {recipeShown ? <JonelleRecipe /> : null}
     </div>
     </>
   );
