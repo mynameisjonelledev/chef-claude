@@ -1,4 +1,9 @@
-const fetch = require('node-fetch');
+const fetchData = async () => {
+  const response = await fetch('/.netlify/functions/huggingface-api');
+  const data = await response.json();
+  console.log(data);
+};
+
 
 exports.handler = async function(event, context) {
   const huggingFaceToken = process.env.VITE_HUGGING_FACE_TOKEN;  // Store this token in Netlify's settings
