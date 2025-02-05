@@ -34,3 +34,10 @@ exports.handler = async function(event, context) {
     };
   }
 };
+
+const fetchData = async () => {
+  const response = await fetch('/.netlify/functions/huggingface-api');
+  const data = await response.json();
+  console.log(data);
+};
+
