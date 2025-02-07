@@ -24,7 +24,12 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        inputs: `Make a recipe with the following ingredients: ${ingredients.join(", ")}`,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: `I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!` }  
+        ]
+
+        //inputs: `Make a recipe with the following ingredients: ${ingredients.join(", ")}`,
       }),
     });
 
