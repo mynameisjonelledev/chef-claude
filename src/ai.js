@@ -8,6 +8,7 @@ export async function getRecipeFromMistral(ingredientsArr) {
       body: JSON.stringify({ ingredients: ingredientsArr })
     });
 
+    // this the magic!! recipe. Thanks ChatGPT!
     const data = await response.json();
     console.log(data);  // Log or display the recipe result
 

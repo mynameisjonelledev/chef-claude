@@ -4,7 +4,7 @@ import { JonelleRecipe } from "./JonelleRecipe";
 import { getRecipeFromMistral } from "../ai";
 
 export function Main() {
-  const [ingredients, setIngredients] = useState(["all the main spices", "pasta", "ground beef", "tomato paste"]);
+  const [ingredients, setIngredients] = useState([]);
 
   const [recipeShown, setRecipeShown] = useState(false);
 
