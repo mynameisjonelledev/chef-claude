@@ -1,30 +1,30 @@
-const fetch = require('node-fetch');
+// api/huggingface-api.js
+export default async function handler(req, res) {
+  const { ingredients } = req.body; // Get ingredients from the frontend
 
-module.exports = async (req, res) => {
-  // Get the Hugging Face API token from environment variables
+  // Get your Hugging Face API token from environment variables
   const huggingFaceToken = process.env.HF_ACCESS_TOKEN;
 
   if (!huggingFaceToken) {
-    return res.status(500).json({ error: 'API token not found!' });
+    return res.status(500).json({ error: "API token not found!" });
   }
 
   try {
-    // Extract the ingredients from the request body
-    const { ingredients } = req.body;
-    
-    // Call Hugging Face API to generate a response based on the ingredients
-    const response = await fetch('https://api-inference.huggingface.co/models/gpt2', {
-      method: 'POST',
+    // Call the Hugging Face API (for GPT-2, or any other model you are using)
+    const response = await fetch("https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1", {
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${huggingFaceToken}`,
-        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${huggingFaceToken}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ inputs: `I have the ingredients: ${ingredients.join(", ")}` })
+      body: JSON.stringify({
+        inputs: `Make a recipe with the following ingredients: ${ingredients.join(", ")}`,
+      }),
     });
 
     const result = await response.json();
-    return res.status(200).json(result);  // Send the response back to the frontend
+    res.status(200).json(result); // Send the result back to frontend
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message }); // Error handling
   }
-};
+}
