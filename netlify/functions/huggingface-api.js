@@ -41,3 +41,5 @@ const fetchData = async () => {
   console.log(data);
 };
 
+console.log(fetchData());
+
