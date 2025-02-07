@@ -32,18 +32,9 @@ export default async function handler(req, res) {
 
     const result = await response.json();
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(result),
-    };
+    res.status(200).json(result); // Send the result back to frontend
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
-
-    /* res.status(200).json(result); // Send the result back to frontend
-  } catch (error) {
-    res.status(500).json({ error: error.message }); // Error handling */
+    res.status(500).json({ error: error.message }); // Error handling 
   }
 }
-}
+
