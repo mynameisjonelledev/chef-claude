@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IngredientsList } from "./IngredientsList";
 import { JonelleRecipe } from "./JonelleRecipe";
+import { getRecipeFromMistral } from "../ai";
 
 export function Main() {
   
