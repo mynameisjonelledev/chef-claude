@@ -8,6 +8,13 @@ export async function getRecipeFromMistral(ingredientsArr) {
       body: JSON.stringify({ ingredients: ingredientsArr })
     });
 
+    // Check if the response is OK (status 200)
+    if (!response.ok) {
+      const errorText = await response.text(); // Read as text if it's not JSON
+      console.error("Error response:", errorText); // Log the error message
+      return; // Exit if the response is an error
+    }
+
     // this the magic!! recipe. Thanks ChatGPT!
     const data = await response.json();
     console.log(data);  // Log or display the recipe result
