@@ -1,18 +1,18 @@
 export async function getRecipeFromMistral(ingredientsArr) {
+  const ingredientsString = ingredientsArr.join(", ");
 
   try {
-    const response = await fetch('/.netlify/functions/huggingface-api', {
+    const response = await fetch('/api/huggingface-api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ingredients: ingredientsArr }) // Send ingredients to backend
+      body: JSON.stringify({ ingredients: ingredientsArr })
     });
 
     const data = await response.json();
-    console.log(data); // Log or display the generated recipe
+    console.log(data);  // Log or display the recipe result
 
-    return data; // Return recipe to use in UI
+    return data;  // Return the recipe to use in the UI
   } catch (error) {
     console.error("Error fetching recipe:", error);
   }
 }
-
