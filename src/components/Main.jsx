@@ -4,15 +4,14 @@ import { JonelleRecipe } from "./JonelleRecipe";
 import { getRecipeFromMistral } from "../ai";
 
 export function Main() {
-  
-
   const [ingredients, setIngredients] = useState(["all the main spices", "pasta", "ground beef", "tomato paste"]);
 
   const [recipeShown, setRecipeShown] = useState(false);
 
-  function toggleRecipeShown() {
-    setRecipeShown(prevShown => !prevShown)
-  }
+  async function getRecipe() {
+    const recipeMarkdown = await getRecipeFromMistral(ingredients);
+    console.log(recipeMarkdown);
+}
 
   function addIngredient(event) {
     event.preventDefault();
@@ -49,7 +48,7 @@ export function Main() {
       {ingredients.length > 0 ? 
       <IngredientsList 
         ingredients={ingredients} 
-        toggleRecipeShown ={toggleRecipeShown}
+        getRecipe ={getRecipe}
         
         /> 
         
