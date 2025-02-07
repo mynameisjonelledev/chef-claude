@@ -1,6 +1,0 @@
-[build]
-  functions = "netlify/functions"  # Path to the functions folder
-  publish = "build"  # Or wherever your frontend is being built
-
-[dev]
-  functions = "netlify/functions"  # For local dev
