@@ -10,7 +10,8 @@ export function Main() {
 
   async function getRecipe() {
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
-    setRecipe(recipeMarkdown);
+    //setRecipe(recipeMarkdown);
+    setRecipe(JSON.stringify(recipeMarkdown));
 } 
 
   function addIngredient(event) {
