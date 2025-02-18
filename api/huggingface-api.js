@@ -1,6 +1,6 @@
-/* const SYSTEM_PROMPT = `
+const SYSTEM_PROMPT = `
 You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page.
-`; */
+`
 
 // api/huggingface-api.js
 
@@ -27,15 +27,15 @@ export default async function handler(req, res) {
         "Authorization": `Bearer ${huggingFaceToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-       /* messages: [
+      //body: JSON.stringify({
+       messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: `I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!` }  
-        ] */
+        ],
+        max_tokens: 1024,
 
-        inputs: `Format your response in markdown to make it easier to render to a web page. I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!`,
-      }),
-    });
+        //inputs: `Format your response in markdown to make it easier to render to a web page. I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!`,
+      })
 
     // Check if the API response is successful
     if (!response.ok) {

@@ -10,12 +10,7 @@ export async function getRecipeFromMistral(ingredientsArr) {
     const response = await fetch(`/api/huggingface-api`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      //body: JSON.stringify({ ingredients: ingredientsArr });
-
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-      ]
+      body: JSON.stringify({ ingredients: ingredientsArr })
     });
 
     // Check if the response is OK (status 200)
