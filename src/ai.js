@@ -2,7 +2,7 @@ export async function getRecipeFromMistral(ingredientsArr) {
   const ingredientsString = ingredientsArr.join(", ");
 
   try {
-    const response = await fetch('/api/huggingface-api', {
+    const response = await fetch(`/api/huggingface-api`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ingredients: ingredientsArr })

@@ -1,7 +1,9 @@
 import { getRecipeFromMistral } from "../ai";
 
-export function JonelleRecipe() {
+export function JonelleRecipe(props) {
   return(
-    <p>{data}</p>
+   <section>
+    {props.recipe}
+   </section>
   );
 }

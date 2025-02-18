@@ -6,12 +6,12 @@ import { getRecipeFromMistral } from "../ai";
 export function Main() {
   const [ingredients, setIngredients] = useState([]);
 
-  const [recipeShown, setRecipeShown] = useState(false);
+  const [recipe, setRecipe] = useState('');
 
   async function getRecipe() {
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
-    console.log(recipeMarkdown);
-}
+    setRecipe(recipeMarkdown);
+} 
 
   function addIngredient(event) {
     event.preventDefault();
@@ -50,11 +50,12 @@ export function Main() {
         ingredients={ingredients} 
         getRecipe ={getRecipe}
         
+        
         /> 
         
         : null}
 
-      {recipeShown ? <JonelleRecipe /> : null}
+      {recipe ? <JonelleRecipe recipe={recipe}/> : null}
     </div>
     </>
   );
