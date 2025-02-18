@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        inputs: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make! ${SYSTEM_PROMPT}`,
+        inputs: `I have ${ingredientsString}. Please give me a recipe you'd  recommend I make! ${SYSTEM_PROMPT}`,
     })
 
         //inputs: `Format your response in markdown to make it easier to render to a web page. I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!`,
