@@ -19,6 +19,8 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "API token not found!" });
   }
 
+  const ingredientsString = ingredients.join(", "); // FIXED: Define this before use
+
   try {
     // Call the Hugging Face API (for Mistral model)
     const response = await fetch("https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1", {
@@ -27,15 +29,16 @@ export default async function handler(req, res) {
         "Authorization": `Bearer ${huggingFaceToken}`,
         "Content-Type": "application/json",
       },
-      //body: JSON.stringify({
-       messages: [
+      body: JSON.stringify({
+
+        messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: `I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!` }  
-        ],
-        max_tokens: 1024,
+          { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
+      ],
+    })
 
         //inputs: `Format your response in markdown to make it easier to render to a web page. I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make!`,
-      })
+      });
 
     // Check if the API response is successful
     if (!response.ok) {
