@@ -3,8 +3,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
 export function JonelleRecipe(props) {
-
-if (!props.recipe) {
+  if (!props.recipe) {
     return (
       <section className="suggested-recipe-container" aria-live="polite">
         <h2>Chef Jonelle is thinking...</h2>
@@ -12,46 +11,53 @@ if (!props.recipe) {
     );
   }
 
-  try {
-    // Check if the recipe is a string or an array of objects from the API
-    let recipeContent;
-    
-    if (typeof props.recipe === 'string') {
-      // If it's already a string, use it directly
-      recipeContent = props.recipe;
-    } else if (Array.isArray(props.recipe) && props.recipe[0]?.generated_text) {
-      // Extract the generated_text from the API response
-      const fullResponse = props.recipe[0].generated_text;
-      
-      // Extract just the recipe part (remove the prompt and system instructions)
-      // Split by double newlines and skip the first two segments (prompt and system message)
-      const segments = fullResponse.split('\n\n');
-      recipeContent = segments.slice(2).join('\n\n');
-    } else {
-      return (
-        <section className="suggested-recipe-container" aria-live="polite">
-          <h2>Chef Jonelle Recommends:</h2>
-          <p>Sorry, I couldn't find a recipe with those ingredients.</p>
-        </section>
-      );
+  let recipeData = props.recipe;
+  
+  // If the recipe is a string that looks like JSON, try to parse it
+  if (typeof props.recipe === 'string' && 
+      (props.recipe.startsWith('[') || props.recipe.startsWith('{'))) {
+    try {
+      recipeData = JSON.parse(props.recipe);
+    } catch (e) {
+      // If it fails to parse, just use the string as-is
+      recipeData = props.recipe;
     }
-
-    return (
-      <section className="suggested-recipe-container" aria-live="polite">
-        <h2>Chef Jonelle Recommends:</h2>
-        <ReactMarkdown>{recipeContent}</ReactMarkdown>
-      </section>
-    );
-  } catch (error) {
-    console.error("Error rendering recipe:", error);
-    return (
-      <section className="suggested-recipe-container" aria-live="polite">
-        <h2>Chef Jonelle Recommends:</h2>
-        <p>Oops! Something went wrong while preparing your recipe.</p>
-      </section>
-    );
   }
 
+  // Now determine the actual recipe text
+  let recipeContent = '';
+  
+  if (typeof recipeData === 'string') {
+    recipeContent = recipeData;
+  } else if (Array.isArray(recipeData) && recipeData[0]?.generated_text) {
+    const fullText = recipeData[0].generated_text;
+    
+    // Find the start of the actual recipe content after the prompt
+    if (fullText.includes('With the ingredients you')) {
+      const parts = fullText.split('With the ingredients you');
+      recipeContent = 'With the ingredients you' + parts[1];
+    } else {
+      // If we can't find that specific phrase, try splitting by double newlines
+      // and skip the first few segments which likely contain the prompt
+      const segments = fullText.split('\n\n');
+      if (segments.length > 3) {
+        recipeContent = segments.slice(2).join('\n\n');
+      } else {
+        recipeContent = fullText;
+      }
+    }
+  } else {
+    // Last resort - stringify and show whatever we got
+    recipeContent = JSON.stringify(recipeData, null, 2);
+  }
+
+  return (
+    <section className="suggested-recipe-container" aria-live="polite">
+      <h2>Chef Jonelle Recommends:</h2>
+      <ReactMarkdown>{recipeContent}</ReactMarkdown>
+    </section>
+  );
+}
 
 
 
@@ -66,4 +72,3 @@ if (!props.recipe) {
    
    </section>
   );*/}
-}
