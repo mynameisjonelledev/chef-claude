@@ -3,13 +3,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
 export function JonelleRecipe(props) {
-  if (!props.recipe) {
-    return (
-      <section className="suggested-recipe-container" aria-live="polite">
-        <h2>Chef Jonelle is thinking...</h2>
-      </section>
-    );
-  }
+  
 
   let recipeData = props.recipe;
   
@@ -53,8 +47,12 @@ export function JonelleRecipe(props) {
 
   return (
     <section className="suggested-recipe-container" aria-live="polite">
-      <h2>Chef Jonelle Recommends:</h2>
-      <ReactMarkdown>{recipeContent}</ReactMarkdown>
+      {props.recipe ? (
+        <>
+        <h2>Chef Jonelle Recommends:</h2>
+        <ReactMarkdown>{props.recipe}</ReactMarkdown>
+        </>
+      ) : (<h2>Chef Jonelle is thinking ...</h2>)}
     </section>
   );
 }
