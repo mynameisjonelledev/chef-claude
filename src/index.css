@@ -133,3 +133,16 @@ body {
 .suggested-recipe-container ul li, .suggested-recipe-container ol li {
   margin-bottom: 8px;
 }
+
+.pdf-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: rgb(59, 130, 246);
+  color: white;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.pdf-button:hover {
+  background-color: rgb(37, 99, 235);
+}
