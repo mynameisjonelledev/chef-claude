@@ -5,27 +5,6 @@ import { generatePDF } from '@react-pdf/renderer';
 
 export function JonelleRecipe(props) {
 
-  const recipeRef = useRef();
-
-  const handleDownloadPDF = async () => {
-    try {
-      // Create a blob from the content
-      const blob = new Blob([recipeContent], { type: 'application/pdf' });
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'recipe.pdf';
-      document.body.appendChild(link);
-      link.click();
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
-  };
-
   if (!props.recipe) {
     return (
       <section className="suggested-recipe-container" aria-live="polite">
@@ -79,12 +58,6 @@ export function JonelleRecipe(props) {
     <section className="suggested-recipe-container" aria-live="polite">
       <h2>Chef Jonelle Recommends:</h2>
       <ReactMarkdown>{recipeContent}</ReactMarkdown>
-
-      <button 
-        onClick={handleDownloadPDF}
-        className="pdf-button">
-        Download Recipe as PDF
-      </button>
     </section>
   );
 }
