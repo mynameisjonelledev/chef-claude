@@ -1,7 +1,6 @@
 import { getRecipeFromMistral } from "../ai";
 import React, { useRef } from 'react';
-import ReactMarkdown from 'react-markdown'
-import { generatePDF } from '@react-pdf/renderer';
+import ReactMarkdown from 'react-markdown';
 
 export function JonelleRecipe(props) {
 
